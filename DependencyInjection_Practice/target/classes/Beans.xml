@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="student" class="TraineeDev">
+		<constructor-arg value="30" />
+	</bean>
+	<bean id="java_language" class="Java"></bean>
+	<bean id="junior" class="JuniorDev">
+		<constructor-arg value="25" />
+		<constructor-arg ref="java_language" />
+	</bean>
+	<bean id="company" class="ITCompany" factory-method="getInstance" />
+	<bean id="middle" class="MiddleDev">
+		<property name="technology" value="spring" />
+		<property name="language" ref="java_language" />
+	</bean>
+	<bean id="middle2" class="MiddleDev">
+		<property name="technology" value="spring" />
+		<property name="language">
+			<bean class="Java"></bean>
+		</property>
+	</bean>
+	<bean id="cpp_language" class="Cpp"></bean>
+	<bean id="senior" class="SeniorDev">
+		<property name="languages">
+			<list>
+				<ref bean="java_language" />
+				<ref bean="cpp_language" />
+			</list>
+		</property>
+	</bean>
+
+
+</beans>
