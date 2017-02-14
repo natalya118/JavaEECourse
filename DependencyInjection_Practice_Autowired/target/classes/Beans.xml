@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+
+
+	<bean id="java_language" class="com.di.natalya.Java" primary="true"></bean>
+	<bean id="language" class="com.di.natalya.Cpp" primary="false" />
+
+	<bean id="middle" class="com.di.natalya.MiddleDev" autowire="byName">
+		<property name="technology" value="spring" />
+	</bean>
+
+	<bean id="middle2" class="com.di.natalya.MiddleDev" autowire="byType">
+		<property name="technology" value="spring mvc" />
+	</bean>
+
+
+	<bean id="prog" class="com.di.natalya.JustProgrammer" autowire="constructor">
+	</bean>
+
+	<context:annotation-config />
+	<bean id="prog_annotations" class="com.di.natalya.AutowiredJustProgrammer">
+	</bean>
+	
+	<context:component-scan base-package="com.di.natalya">
+		<context:include-filter type="assignable"
+			expression="com.di.natalya.Programmer" />
+	</context:component-scan>
+
+
+
+
+
+</beans>
